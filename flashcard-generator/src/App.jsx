@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import PasteInput from './components/PasteInput'
 import FlashcardViewer from './components/FlashcardViewer'
-import { generateFlashcards } from './services/gemini';
+import { generateFlashcardsFromGemini } from './services/gemini';
+import { regenerateCardFromGemini } from './services/gemini'
 
 function App(){
 
@@ -10,13 +11,15 @@ function App(){
   const [ currentIndex, setCurrentIndex ] = useState(0);
   const [ isLoading, setIsLoading ] = useState(false);
   const [ error, setError ] = useState(null);
-
+  const [ originalText, setOriginalText ] = useState("");
+  const [ isRegenerating, setIsRegenerating ] = useState(false);
 
   const handleGenerate = async(pastedText) => {
     setIsLoading(true);
     setError(null);
+    setOriginalText(pastedText);
     try{
-      const generatedCards = await generateFlashcards(pastedText);
+      const generatedCards = await generateFlashcardsFromGemini(pastedText);
       setCards(generatedCards);
       setCurrentIndex(0);
       setScreen("cards");
@@ -26,6 +29,28 @@ function App(){
     }
     finally{
       setIsLoading(false);
+    }
+  }
+
+  const handleRegenerate = async(difficulty) => {
+    setIsRegenerating(true);
+    try{
+      const newCard = await regenerateCardFromGemini(originalText, cards[currentIndex], difficulty);
+      const updatedCards = cards.map((card, arrIndex) => {
+        if (arrIndex == currentIndex){
+          return newCard;
+        }
+        else{
+          return card;
+        }
+      })
+      setCards(updatedCards);
+    }
+    catch (err){
+      setError("Something went wrong increasing/decreasing difficulty, try again...");
+    }
+    finally{
+      setIsRegenerating(false);
     }
   }
 
@@ -54,6 +79,8 @@ function App(){
                                     currentIndex={currentIndex}
                                     onNext={handleNext}
                                     onPrev={handlePrev}
+                                    onRegenerate={handleRegenerate}
+                                    isRegenerating={isRegenerating}
       />}
     </div>
   )

@@ -1,16 +1,39 @@
 import Flashcard from "./Flashcard";
 
-function FlashcardViewer( {cards, currentIndex, onNext, onPrev} ){
-    const currentCard = cards[currentIndex];
+function FlashcardViewer({
+  cards,
+  currentIndex,
+  onNext,
+  onPrev,
+  onRegenerate,
+  isRegenerating,
+}) {
+  const currentCard = cards[currentIndex];
 
+  return (
+    <div>
+      <Flashcard card={currentCard} />
+      <button onClick={onPrev}>Previous</button>
+      <button onClick={onNext}>Next</button>
+      <button
+        disabled={isRegenerating}
+        onClick={() => {
+          onRegenerate("harder");
+        }}
+      >
+        Harder
+      </button>
 
-    return (
-        <div>
-            <Flashcard card={currentCard} />
-            <button onClick={onPrev}>Previous</button>
-            <button onClick={onNext}>Next</button>
-        </div>
-    )
+      <button
+        disabled={isRegenerating}
+        onClick={() => {
+          onRegenerate("simpler");
+        }}
+      >
+        Simpler
+      </button>
+    </div>
+  );
 }
 
-export default FlashcardViewer
+export default FlashcardViewer;

@@ -1,21 +1,19 @@
 import { useState } from "react"
 
-function PasteInput({ onGenerate }){
+function PasteInput({ onGenerate, isLoading, error }){
 
     const [ text, setText ] = useState("");
 
     return (
         <div>
-            <button onClick = {() => {
-                        onGenerate(text);
-                    }}>
-                    Generate Flashcards
-            </button>
+            {(error) && <p>{error}</p>}
 
-            <textarea value={text} onChange = {(e) => 
-                {setText(e.target.value)}}>
+            <textarea value={text} onChange={(e) => setText(e.target.value)}>
             </textarea>
-            
+
+            <button onClick={() => onGenerate(text)} disabled={isLoading}>
+                {isLoading ? "Generating..." : "Generate Flashcards"}
+            </button>
         </div>
     )
 }

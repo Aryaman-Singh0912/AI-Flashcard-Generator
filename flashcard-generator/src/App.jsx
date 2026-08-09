@@ -1,17 +1,32 @@
 import { useState } from 'react'
 import PasteInput from './components/PasteInput'
 import FlashcardViewer from './components/FlashcardViewer'
-import { sampleCards } from './data/sampleCards'
+import { generateFlashcards } from './services/gemini';
 
 function App(){
 
   const [ screen, setScreen ] = useState("input");
   const [ cards, setCards ] = useState([]);
   const [ currentIndex, setCurrentIndex ] = useState(0);
+  const [ isLoading, setIsLoading ] = useState(false);
+  const [ error, setError ] = useState(null);
 
-  const handleGenerate = (pastedText) => {
-    setCards(sampleCards);
-    setScreen("cards");
+
+  const handleGenerate = async(pastedText) => {
+    setIsLoading(true);
+    setError(null);
+    try{
+      const generatedCards = await generateFlashcards(pastedText);
+      setCards(generatedCards);
+      setCurrentIndex(0);
+      setScreen("cards");
+    }
+    catch (err){
+      setError("Something went wrong generating flashcards, try again...");
+    }
+    finally{
+      setIsLoading(false);
+    }
   }
 
   const handleNext = () => {
@@ -29,7 +44,11 @@ function App(){
 
   return (
     <div>
-      {(screen === 'input') && <PasteInput onGenerate={handleGenerate} />}
+      {(screen === 'input') && <PasteInput 
+                                  onGenerate={handleGenerate}
+                                  isLoading={isLoading}
+                                  error={error}
+      />}
       {(screen === 'cards') && <FlashcardViewer
                                     cards={cards}
                                     currentIndex={currentIndex}

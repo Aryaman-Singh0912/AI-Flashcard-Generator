@@ -1,4 +1,4 @@
-export async function generateFlashcardsFromGemini(pastedText) {
+export async function generateFlashcardsFromGemini(pastedText, numCards) {
     const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 
     const responseSchema = {
@@ -13,8 +13,7 @@ export async function generateFlashcardsFromGemini(pastedText) {
         }
     }
 
-    const promptText = `Generate flashcards from the following text. Create one flashcard per distinct concept or fact. Keep questions clear and answers concise.
-
+    const promptText = `Generate ${numCards} flashcard(s) from the following text. Create one flashcard per distinct concept or fact. Keep questions clear and answers concise.
     Text:${pastedText}`
 
     const response = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent", {

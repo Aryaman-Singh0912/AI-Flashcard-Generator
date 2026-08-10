@@ -13,12 +13,12 @@ function App() {
   const [originalText, setOriginalText] = useState("");
   const [isRegenerating, setIsRegenerating] = useState(false);
 
-  const handleGenerate = async (pastedText) => {
+  const handleGenerate = async (pastedText, numCards) => {
     setIsLoading(true);
     setError(null);
     setOriginalText(pastedText);
     try {
-      const generatedCards = await generateFlashcardsFromGemini(pastedText);
+      const generatedCards = await generateFlashcardsFromGemini(pastedText, numCards);
       setCards(generatedCards);
       setCurrentIndex(0);
       setScreen("cards");

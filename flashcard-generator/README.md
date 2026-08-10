@@ -1,16 +1,31 @@
-# React + Vite
+# Flashcard Generator (App)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This folder contains the actual Vite + React app. For the full project overview, features, and live demo link, see the [root README](../README.md).
 
-Currently, two official plugins are available:
+## Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+```
 
-## React Compiler
+Add a `.env` file in this folder with your own Gemini API key:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```
+VITE_GEMINI_API_KEY=your_key_here
+```
 
-## Expanding the ESLint configuration
+## Run locally
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm run dev
+```
+
+## Build for production
+
+```bash
+npm run build
+```
+
+## Stack
+
+React (Vite) + Tailwind CSS v4, calling the Gemini API directly from the browser.

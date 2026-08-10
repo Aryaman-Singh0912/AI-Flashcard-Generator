@@ -35,3 +35,32 @@ npm install
 ```
 
 Create a `.env` file inside `flashcard-generator/` with your own Gemini API key:
+
+```
+VITE_GEMINI_API_KEY=your_key_here
+```
+
+Then run the dev server:
+
+```bash
+npm run dev
+```
+
+## Project Structure
+
+```
+flashcard-generator/
+├── src/
+│   ├── components/       # PasteInput, FlashcardViewer, Flashcard
+│   ├── services/          # gemini.js — API calls to Gemini
+│   └── App.jsx             # top-level state and screen routing
+├── public/                  # favicon, static assets
+└── index.html
+```
+
+## Note on Architecture
+
+This project calls the Gemini API directly from the browser rather than through a backend server — a deliberate tradeoff for a portfolio project (simpler deployment, no server to maintain). This does mean the API key is visible client-side; not a pattern used for production apps handling sensitive data, but acceptable here.
+
+---
+Built by [Aryaman Singh](https://github.com/Aryaman-Singh0912)/` with your own Gemini API key:

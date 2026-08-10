@@ -1,10 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-blush: #fadcd5;
-  --color-mauve: #765d67;
-  --color-plum: #6d3c52;
-  --color-wine: #4b2138;
-  --color-ink: #1b0c1a;
-  --color-charcoal: #2d222f;
+  --color-blush: #FADCD5;
+  --color-mauve: #765D67;
+  --color-plum: #6D3C52;
+  --color-wine: #4B2138;
+  --color-ink: #1B0C1A;
+  --color-charcoal: #2D222F;
+}
+
+@layer base {
+  body {
+    font-family: "Merriweather", serif;
+  }
 }

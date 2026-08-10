@@ -68,4 +68,4 @@ flashcard-generator/
 This project calls the Gemini API directly from the browser rather than through a backend server — a deliberate tradeoff for a portfolio project (simpler deployment, no server to maintain). This does mean the API key is visible client-side; not a pattern used for production apps handling sensitive data, but acceptable here.
 
 ---
-Built by [Aryaman Singh](https://github.com/Aryaman-Singh0912)/` with your own Gemini API key:
+Built by [Aryaman Singh](https://github.com/Aryaman-Singh0912)

@@ -7,7 +7,7 @@ Paste any block of text or notes and instantly get a deck of structured, study-r
 ![AI](https://img.shields.io/badge/AI-Gemini%20API-8E75B2?style=flat&logo=googlegemini&logoColor=white&labelColor=333333)
 ![Deploy](https://img.shields.io/badge/Deploy-Vercel-000000?style=flat&logo=vercel&logoColor=white&labelColor=333333)
 
-🔗 **Live demo:** (https://ai-flashcard-generator-aryaman-singh.vercel.app/)
+🔗 **Live demo:** (https://cogni-flashcard-generator.vercel.app/)
 
 ## Features
 
